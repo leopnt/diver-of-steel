@@ -1,0 +1,191 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://classes/sub.gd" type="Script" id=1]
+[ext_resource path="res://assets/lights2D/light2D.png" type="Texture" id=2]
+[ext_resource path="res://assets/lights2D/circle_light2D.png" type="Texture" id=3]
+[ext_resource path="res://assets/sub/sub.png" type="Texture" id=4]
+[ext_resource path="res://assets/particles/bubble.png" type="Texture" id=5]
+[ext_resource path="res://theme/main_font_40.tres" type="DynamicFont" id=6]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.2
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0, 0.48491 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="StreamTexture" id=3]
+load_path = "res://.import/bubble.png-bf04210dc3e8ff746f43268f8852ffd9.stex"
+
+[sub_resource type="Curve" id=4]
+min_value = -1000.0
+max_value = 0.0
+_data = [ Vector2( 0, -1000 ), 0.0, 7586.16, 0, 0, Vector2( 0.249674, 0 ), 7.93689, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=5]
+_data = [ Vector2( 0.497392, 0.47334 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0769703, 0.0, 0, 0 ]
+
+[node name="sub" type="RigidBody2D"]
+physics_material_override = SubResource( 1 )
+script = ExtResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+smoothing_speed = 3.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 0.181129, -11.8869, 5.96236, -8.81927, 9.73786, -2.09416, 10.2098, 5.57481, 8.55801, 8.28845, -0.0548401, 9.70427, -8.07777, 8.40644, -9.84753, 6.16474, -9.49358, -2.33013, -5.48212, -8.5833 )
+
+[node name="ballast" type="CPUParticles2D" parent="."]
+amount = 4
+lifetime = 6.0
+local_coords = false
+texture = ExtResource( 5 )
+emission_shape = 1
+emission_sphere_radius = 6.0
+direction = Vector2( 0, -1 )
+spread = 5.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+initial_velocity_random = 0.5
+scale_amount = 0.4
+scale_amount_random = 0.2
+scale_amount_curve = SubResource( 2 )
+
+[node name="upThruster" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 32
+lifetime = 6.0
+local_coords = false
+texture = ExtResource( 5 )
+emission_shape = 1
+emission_sphere_radius = 4.0
+direction = Vector2( 0, -1 )
+spread = 5.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+initial_velocity_random = 0.5
+scale_amount = 0.4
+scale_amount_random = 0.2
+scale_amount_curve = SubResource( 2 )
+
+[node name="rightThruster" type="CPUParticles2D" parent="."]
+position = Vector2( 8, 0 )
+emitting = false
+amount = 32
+lifetime = 2.0
+lifetime_randomness = 1.0
+local_coords = false
+texture = SubResource( 3 )
+spread = 10.0
+gravity = Vector2( 0, -50 )
+initial_velocity = 200.0
+linear_accel_random = 0.1
+linear_accel_curve = SubResource( 4 )
+tangential_accel_random = 1.0
+damping = 50.0
+angle = -360.0
+angle_random = 1.0
+scale_amount = 0.2
+scale_amount_random = 0.2
+scale_amount_curve = SubResource( 5 )
+
+[node name="leftThruster" type="CPUParticles2D" parent="."]
+position = Vector2( -8, 0 )
+emitting = false
+amount = 32
+lifetime = 2.0
+lifetime_randomness = 1.0
+local_coords = false
+texture = SubResource( 3 )
+direction = Vector2( -1, 0 )
+spread = 10.0
+gravity = Vector2( 0, -50 )
+initial_velocity = 200.0
+linear_accel_random = 0.1
+linear_accel_curve = SubResource( 4 )
+tangential_accel_random = 1.0
+damping = 50.0
+angle = -360.0
+angle_random = 1.0
+scale_amount = 0.2
+scale_amount_random = 0.2
+scale_amount_curve = SubResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -1 )
+scale = Vector2( 0.35, 0.35 )
+texture = ExtResource( 4 )
+
+[node name="circleLight2D" type="Light2D" parent="."]
+texture = ExtResource( 3 )
+texture_scale = 2.0
+mode = 2
+range_layer_min = -1
+shadow_enabled = true
+shadow_filter = 2
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 2 )
+offset = Vector2( 0, 200 )
+color = Color( 1, 0.992157, 0.909804, 1 )
+energy = 2.0
+mode = 2
+range_layer_min = -1
+shadow_enabled = true
+shadow_filter = 2
+shadow_item_cull_mask = 3
+
+[node name="chrono_trigger" type="Timer" parent="."]
+autostart = true
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -96.0295
+margin_top = -65.7926
+margin_right = 95.9705
+margin_bottom = -16.7926
+custom_fonts/font = ExtResource( 6 )
+text = "Dive as deep
+as you can!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelAdvice" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -103.658
+margin_top = 14.18
+margin_right = 104.342
+margin_bottom = 89.18
+custom_fonts/font = ExtResource( 6 )
+text = "But keep an
+eye on the
+oxygen bubble"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="fadeAdvice" type="Tween" parent="LabelAdvice"]
+
+[node name="lateralWarning" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = -96.217
+margin_top = 15.5907
+margin_right = 95.783
+margin_bottom = 93.5907
+custom_fonts/font = ExtResource( 6 )
+text = "You are
+lateraly
+too far"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="timeout" from="chrono_trigger" to="." method="_on_chrono_trigger_timeout"]

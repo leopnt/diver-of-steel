@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/audio/ambiant_underwater.ogg" type="AudioStream" id=1]
+[ext_resource path="res://assets/audio/metal_tick.wav" type="AudioStream" id=2]
+[ext_resource path="res://assets/audio/score_click.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/audio/propeller.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/audio/win.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/game_over.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/audio/water_flow.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/audio/hit.wav" type="AudioStream" id=8]
+
+[node name="audio" type="Node"]
+pause_mode = 2
+
+[node name="damage" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+pitch_scale = 0.04
+bus = "damage"
+
+[node name="ambiant_underwater" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -3.0
+autoplay = true
+
+[node name="metal_tick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+pitch_scale = 0.6
+bus = "metal_tick_effect"
+
+[node name="score_click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+pitch_scale = 2.0
+bus = "score_effect"
+
+[node name="propeller" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -14.0
+bus = "underwater"
+
+[node name="win" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="game_over" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="water_flow" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+pitch_scale = 0.2
+autoplay = true
+bus = "water_flow"

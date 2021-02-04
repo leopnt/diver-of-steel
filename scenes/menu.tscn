@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://theme/main_font_40.tres" type="DynamicFont" id=1]
+[ext_resource path="res://theme/theme.tres" type="Theme" id=2]
+[ext_resource path="res://classes/menu.gd" type="Script" id=3]
+
+[node name="menu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 2 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.862745 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="message" type="Label" parent="VBoxContainer"]
+margin_top = 115.0
+margin_right = 300.0
+margin_bottom = 139.0
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 1 )
+text = "Message"
+align = 1
+valign = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+margin_left = 82.0
+margin_top = 258.0
+margin_right = 218.0
+margin_bottom = 512.0
+size_flags_horizontal = 6
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="VBoxContainer/VBoxContainer"]
+margin_right = 136.0
+margin_bottom = 58.0
+text = "DIVE NOW"
+[connection signal="visibility_changed" from="." to="." method="_on_menu_visibility_changed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/Button" to="." method="_on_Button_pressed"]

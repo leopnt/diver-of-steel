@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/ambiant_underwater.ogg-9438bb81fbff471c9d394f62702db2d5.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/ambiant_underwater.ogg"
+dest_files=[ "res://.import/ambiant_underwater.ogg-9438bb81fbff471c9d394f62702db2d5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
